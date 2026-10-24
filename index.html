@@ -222,6 +222,19 @@ function niceMax(value) {
 function compact(n) { return n >= 1000 ? NUM.format(Math.round(n / 100) / 10) + " mil" : NUM.format(n); }
 function dayLabel(iso) { return DAY.format(new Date(iso + "T12:00:00Z")); }
 
+/** Every calendar day from the first to the last, so a quiet day shows as zero instead of disappearing. */
+function everyDay(rows) {
+  if (!rows.length) return [];
+  const byDay = new Map(rows.map(r => [r.dia, r]));
+  const out = [];
+  for (let d = new Date(rows[0].dia + "T00:00:00Z"), end = new Date(rows[rows.length - 1].dia + "T00:00:00Z");
+       d <= end; d.setUTCDate(d.getUTCDate() + 1)) {
+    const iso = d.toISOString().slice(0, 10);
+    out.push(byDay.get(iso) || { dia: iso, series_nuevas: 0, fotos: 0 });
+  }
+  return out;
+}
+
 /** Columns grow from one baseline; 4px rounded data-end, square at the baseline. */
 function columnPath(x, y, w, h, r = 4) {
   r = Math.min(r, w / 2, h);
@@ -322,7 +335,7 @@ function render(data) {
   document.getElementById("k-dias").textContent = NUM.format(data.por_dia.length);
   document.getElementById("k-dias-note").textContent = data.por_dia.length
     ? `del ${dayLabel(data.por_dia[0].dia)} al ${dayLabel(data.por_dia[data.por_dia.length - 1].dia)}` : "sin lecturas aún";
-  columnChart(document.getElementById("c-dias"), data.por_dia);
+  columnChart(document.getElementById("c-dias"), everyDay(data.por_dia));
   dayTable(document.getElementById("t-dias"), data.por_dia);
   statusList(document.getElementById("c-conciliacion"), data.conciliacion);
   const parts = [];
@@ -354,7 +367,7 @@ try { const saved = localStorage.getItem("tema"); if (saved) document.documentEl
 let resizing;
 window.addEventListener("resize", () => {
   clearTimeout(resizing);
-  resizing = setTimeout(() => { if (latest) columnChart(document.getElementById("c-dias"), latest.por_dia); }, 150);
+  resizing = setTimeout(() => { if (latest) columnChart(document.getElementById("c-dias"), everyDay(latest.por_dia)); }, 150);
 });
 
 refresh();
