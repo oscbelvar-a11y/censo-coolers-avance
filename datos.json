@@ -1,13 +1,13 @@
 {
- "series_contadas": 2315,
+ "series_contadas": 2316,
  "meta_equipos": 20034,
- "fotos": 7387,
- "clientes": 1176,
- "ultima_lectura": "2026-10-30T16:30:40.000Z",
+ "fotos": 7390,
+ "clientes": 1177,
+ "ultima_lectura": "2026-10-30T16:49:39.000Z",
  "conciliacion": [
   {
    "estado": "EN_BASE",
-   "series": 1503
+   "series": 1504
   },
   {
    "estado": "NO_REGISTRADO",
@@ -175,9 +175,9 @@
   },
   {
    "dia": "2026-10-30",
-   "series_nuevas": 7,
-   "fotos": 21
+   "series_nuevas": 8,
+   "fotos": 24
   }
  ],
- "publicado_en": "2026-10-30T16:44:13.367Z"
+ "publicado_en": "2026-10-30T16:59:13.006Z"
 }
