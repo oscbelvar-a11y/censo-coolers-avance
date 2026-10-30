@@ -1,9 +1,9 @@
 {
  "series_contadas": 2317,
  "meta_equipos": 20034,
- "fotos": 7393,
+ "fotos": 7400,
  "clientes": 1178,
- "ultima_lectura": "2026-10-30T17:05:51.000Z",
+ "ultima_lectura": "2026-10-30T17:26:28.000Z",
  "conciliacion": [
   {
    "estado": "EN_BASE",
@@ -176,8 +176,8 @@
   {
    "dia": "2026-10-30",
    "series_nuevas": 9,
-   "fotos": 27
+   "fotos": 34
   }
  ],
- "publicado_en": "2026-10-30T17:14:12.953Z"
+ "publicado_en": "2026-10-30T17:29:13.683Z"
 }
